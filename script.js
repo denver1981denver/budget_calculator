@@ -18,7 +18,7 @@ const showTypeOf = function(data) {
 // функция вывода в консоль типа данных
 
 const getExpensesMonth = function (sum1, sum2) {
-  return sum1 + sum2;
+return sum1 + sum2;
 };
 // Функция получения всех расходов за месяц
 
@@ -33,7 +33,7 @@ const getTargetMonth = function(mission, accumulated) {
 	if (!accumulated) {
 		return 0;
 	}
-  return Math.ceil(mission / accumulated);
+	return Math.ceil(mission / accumulated);
 };
 // функция рассчёта цели в месяцах
 
@@ -59,7 +59,7 @@ showTypeOf(deposit);
 console.log(`Расходы за месяц: ${getExpensesMonth(amount1, amount2)}`);
 console.log(addExpenses);
 console.log(addExpenses.toLowerCase().split(','));
-console.log(`Цель будет достигнута за ${getTargetMonth(mission, accumulatedMonth)} месяцев(-a)`);
+console.log(`Цель будет достигнута за ${getTargetMonth(mission, accumulatedMonth)} месяцев(a)`);
 console.warn('Бюджет на день:', Math.floor(budgetDay));
 console.error(getStatusIncome());
 // Выводы в консоль
