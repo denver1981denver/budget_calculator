@@ -13,17 +13,17 @@ const money = +prompt('Ваш месячный доход?', '50000'),
 let budgetDay;
 
 const showTypeOf = function(data) {
-    console.log(data, typeof data);
+  console.log(data, typeof data);
 };
 // функция вывода в консоль типа данных
 
 const getExpensesMonth = function (sum1, sum2) {
-    return sum1 + sum2;
+  return sum1 + sum2;
 };
 // Функция получения всех расходов за месяц
 
 const getAccumulatedMonth = function(income, totalAmount) {
-    return income - totalAmount;
+  return income - totalAmount;
 };
 
 const accumulatedMonth =  getAccumulatedMonth(money, getExpensesMonth(amount1, amount2));
