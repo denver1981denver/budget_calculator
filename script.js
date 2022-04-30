@@ -16,7 +16,6 @@ let budgetDay,
   expenses = [];
 
 const start = function() {
-
 	do {
 		money = prompt('Ваш месячный доход?', '50000');
 	}
@@ -47,12 +46,11 @@ let sum = 0,
 		expenses[i]	= prompt('Введите обязательную статью расходов',"кредит");
 
     do {
-      value = +prompt('Во сколько это обойдётся?','2000');
+      value = prompt('Во сколько это обойдётся?','2000');
     }
       while(!isNumber(value));
-      sum += value;
+      sum += +value;
   }
-  
   return sum;
 };
 
@@ -67,12 +65,10 @@ const accumulatedMonth =  getAccumulatedMonth(money, expensesAmount);
 // Функция получения накопления за месяц
 
 const getTargetMonth = function(mission, accumulated) {
- 
   if (accumulated <= 0) {
     return  `Цель не будет достигнута`;
   }  
-
-  return  `Цель будет достигнута за ${Math.ceil(mission / accumulated)} месяцев (-а)`;  
+  return  `Цель будет достигнута за ${Math.ceil(mission / accumulated)} месяцев (а)`;  
 };
 // функция рассчёта цели в месяцах
 
@@ -82,13 +78,13 @@ budgetDay = accumulatedMonth/30;
 const getStatusIncome = function() {
      
   if(budgetDay >= 1200) {
-    	return ('У вас высокий уровень дохода');
+    return ('У вас высокий уровень дохода');
   } else if(budgetDay >= 600) {
-      return ('У вас средний уровень дохода');
+    return ('У вас средний уровень дохода');
   } else if(budgetDay >= 0) {
-      return ('К сожалению у вас уровень дохода ниже среднего');
-  } else    {
-      return ('Вы в долгах');
+    return ('К сожалению у вас уровень дохода ниже среднего');
+  } else  {
+    return ('Вы в долгах');
   }  
 };
 // функция определения уровня доходов
@@ -98,13 +94,16 @@ showTypeOf(income);
 showTypeOf(deposit);
 console.log(`%cРасходы за месяц: ${expensesAmount}`,
  'color: white; font-style: italic; background-color: black;');
-console.log(addExpenses, addExpenses.toLowerCase().split(','));
+console.log(addExpenses);
+console.log(addExpenses.toLowerCase().split(','));
 console.log(`%c${getTargetMonth(mission, accumulatedMonth)}`, 'color: blue; font-size: 15px; text-decoration: underline;');
 console.log('%cБюджет на день:',
  'color: yellow; font-style: italic; background-color: green; padding: 10px;', Math.floor(budgetDay));
 console.log(`%c${getStatusIncome()}`,
  'color: red; font-size: 20px;  background-color: skyblue; font-style: italic; border-radius: 40px; padding: 7px');
 // Выводы в консоль
+
+
 
 
 
