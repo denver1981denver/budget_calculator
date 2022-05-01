@@ -5,6 +5,7 @@ let money;
 const isNumber = function(n) {
 	return !isNaN(parseFloat(n)) && isFinite(n);
 };
+
 function start() {
 
   do {
@@ -25,16 +26,37 @@ const appData = {
   expenses: {},
   addExpenses: [],
   deposit: false,
+  percentDeposit: 0,
+  moneyDeposit: 0,
   mission: 100000,
-  period: 12,
+  period: 3,
   asking: function() {
-    let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период','Коммуналка,Кредит,Продукты');
+    if (confirm('Усть ли у вас дополнительный заработок')) {
+      let itemIncome,
+        cashIncome;
+
+      do {
+        itemIncome = prompt('Какой у вас дополнительный заработок','Таксую');
+      } while (!isNaN(itemIncome));
+
+      do {
+        cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?', 10000);
+      } while (!isNumber(cashIncome));
+     
+      appData.addIncome[itemIncome] = +cashIncome;
+    }
+
+    let addExpenses,
+      value,
+      data = 0; 
+    addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период','Коммуналка,Кредит,Продукты');
     appData.addExpenses = addExpenses.toLowerCase().split(',');
     appData.deposit = confirm('Есть ли у вас депозит в банке?');
-    let value,
-    data = 0;
+    
     for (let i = 0; i < 2; i++) {
+      do {
       value = prompt('Введите обязательную статью расходов',"кредит");
+      }  while (!isNaN(value));
         do {
           data = prompt('Во сколько это обойдётся?','2000');
         }
@@ -68,17 +90,43 @@ const appData = {
       return ('Что-то пошло не так');
     }  
   },
+  getInfoDeposit: function () {
+    if (appData.deposit) {
+      let percentDeposit,
+      moneyDeposit;
+      do {
+        percentDeposit = prompt('Какой годовой процент?', '10');
+      }  while (!isNumber(percentDeposit));
+
+      do {
+        moneyDeposit = prompt('Какая сумма заложена', 10000);
+      }  while (!isNumber(moneyDeposit));
+      
+      appData.percentDeposit = +percentDeposit;
+      appData.moneyDeposit = +moneyDeposit;
+    }
+  },
+  calcSaveMoney: function () {
+    return appData.budgetMonth * appData.period;
+  }
 };
 // все данные теперь являются свойствами объекта appData
 
 appData.asking();
 appData.getExpensesMonth();
 appData.getBudget();
+appData.getInfoDeposit();
 // вызов методов объекта
+
+let addExpensesInfo =[];
+appData.addExpenses.forEach(function(item, index) {
+  addExpensesInfo[index] = item[0].toUpperCase() + item.slice(1);
+});
 
 console.log('Расходы за месяц ', appData.expensesMonth);
 console.log(appData.getTargetMonth());
 console.log(appData.getStatusIncome());
+console.log(addExpensesInfo.join(', '));
 console.log('___________________________________________________________________________');
 console.log("Наша программа включает в себя данные: ");
 
