@@ -8,10 +8,10 @@ const isNumber = function(n) {
 function start() {
 
   do {
-		money = prompt('Ваш месячный доход?', '50000');
+		money = +prompt('Ваш месячный доход?', '50000');
 	}
   while(!isNumber(money));
-};
+}
 
 start();
 
@@ -36,10 +36,10 @@ const appData = {
     for (let i = 0; i < 2; i++) {
       value = prompt('Введите обязательную статью расходов',"кредит");
         do {
-          data = +prompt('Во сколько это обойдётся?','2000');
+          data = prompt('Во сколько это обойдётся?','2000');
         }
         while(!isNumber(data));
-      appData.expenses[value] = data;
+      appData.expenses[value] = +data;
     }
   },
   getExpensesMonth: function () {
@@ -55,7 +55,7 @@ const appData = {
     if (appData.budgetMonth <= 0) {
       return  `Цель не будет достигнута`;
     }  
-    return  `Цель будет достигнута за ${Math.ceil(appData.mission / appData.budgetMonth)} месяцев (-а)`;  
+    return  `Цель будет достигнута за ${Math.ceil(appData.mission / appData.budgetMonth)} месяцев (а)`;  
   },
   getStatusIncome: function () {
     if (appData.budgetDay >= 1200) {
@@ -76,7 +76,7 @@ appData.getExpensesMonth();
 appData.getBudget();
 // вызов методов объекта
 
-console.log(' Расходы за месяц ', appData.expensesMonth);
+console.log('Расходы за месяц ', appData.expensesMonth);
 console.log(appData.getTargetMonth());
 console.log(appData.getStatusIncome());
 console.log('___________________________________________________________________________');
