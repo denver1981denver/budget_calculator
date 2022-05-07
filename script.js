@@ -9,7 +9,7 @@ const isNumber = function(n) {
 function start() {
 
   do {
-		money = +prompt('Ваш месячный доход?', '50000');
+		money = prompt('Ваш месячный доход?', '50000');
 	}
   while(!isNumber(money));
 }
@@ -20,7 +20,7 @@ const appData = {
   budgetDay: 0,
   budgetMonth: 0,
   expensesMonth: 0,
-  budget: money,
+  budget: +money,
   income: {},
   addIncome: [],
   expenses: {},
@@ -31,7 +31,7 @@ const appData = {
   mission: 100000,
   period: 3,
   asking: function() {
-    if (confirm('Усть ли у вас дополнительный заработок')) {
+    if (confirm('Есть ли у вас дополнительный заработок')) {
       let itemIncome,
         cashIncome;
 
